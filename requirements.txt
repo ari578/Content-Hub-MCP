@@ -1,0 +1,5 @@
+mcp>=1.26.0
+httpx>=0.28.0
+beautifulsoup4>=4.14.0
+uvicorn>=0.40.0
+starlette>=0.52.0
