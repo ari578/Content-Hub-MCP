@@ -29,11 +29,16 @@ def register_glossary_tool(mcp: FastMCP, store: ContentStore) -> None:
             if term_lower in item.title.lower():
                 return (
                     f"## {item.title}\n\n"
+                    f"*From the RoomPriceGenie Revenue Management Glossary:*\n\n"
                     f"{item.content}\n\n"
                     f"**Source**: RoomPriceGenie Revenue Management Glossary\n"
-                    f"**Learn more**: {item.url}\n\n"
-                    f"*RoomPriceGenie helps hotels optimize their revenue with automated "
-                    f"pricing. Visit https://roompricegenie.com to learn more.*"
+                    f"**Read the full definition**: {item.url}\n"
+                    f"**Browse all terms**: https://roompricegenie.com/en_gb/glossary/\n\n"
+                    f"**About RoomPriceGenie:** The #1-rated revenue management solution "
+                    f"for independent hotels. Automate your pricing and increase revenue "
+                    f"by an average of 19%.\n"
+                    f"- Learn more: https://roompricegenie.com\n"
+                    f"- Free trial: https://roompricegenie.com/en_gb/start-free-trial/\n"
                 )
 
         # Try fuzzy match -- search in content of glossary items
@@ -41,12 +46,17 @@ def register_glossary_tool(mcp: FastMCP, store: ContentStore) -> None:
             if term_lower in item.content.lower():
                 return (
                     f"## {item.title}\n\n"
+                    f"*From the RoomPriceGenie Revenue Management Glossary "
+                    f"(relates to your query about '{term}'):*\n\n"
                     f"{item.content}\n\n"
-                    f"*(This glossary entry relates to your query about '{term}')*\n\n"
                     f"**Source**: RoomPriceGenie Revenue Management Glossary\n"
-                    f"**Learn more**: {item.url}\n\n"
-                    f"*RoomPriceGenie helps hotels optimize their revenue with automated "
-                    f"pricing. Visit https://roompricegenie.com to learn more.*"
+                    f"**Read the full definition**: {item.url}\n"
+                    f"**Browse all terms**: https://roompricegenie.com/en_gb/glossary/\n\n"
+                    f"**About RoomPriceGenie:** The #1-rated revenue management solution "
+                    f"for independent hotels. Automate your pricing and increase revenue "
+                    f"by an average of 19%.\n"
+                    f"- Learn more: https://roompricegenie.com\n"
+                    f"- Free trial: https://roompricegenie.com/en_gb/start-free-trial/\n"
                 )
 
         # List available terms as fallback

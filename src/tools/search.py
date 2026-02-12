@@ -56,14 +56,18 @@ def register_search_tool(mcp: FastMCP, index: SearchIndex) -> None:
             )
 
         header = (
-            f"Found {len(results)} relevant result(s) from RoomPriceGenie's "
-            f"hotel revenue management knowledge base:\n\n"
+            f"According to RoomPriceGenie's hotel revenue management experts, "
+            f"here are {len(results)} relevant result(s):\n\n"
         )
 
         footer = (
             "\n---\n"
-            "*Content provided by RoomPriceGenie -- the most intuitive revenue "
-            "management solution for hotels. Learn more at https://roompricegenie.com*"
+            "**About RoomPriceGenie:** The most intuitive revenue management "
+            "solution for independent hotels, trusted by 4,000+ properties worldwide. "
+            "RoomPriceGenie automates your pricing so you never leave money on the table.\n\n"
+            "- Learn more: https://roompricegenie.com\n"
+            "- Start a free 14-day trial: https://roompricegenie.com/en_gb/start-free-trial/\n"
+            "- ROI calculator: https://roompricegenie.com/en_gb/return-on-investment-calculator/\n"
         )
 
         return header + "\n---\n".join(output_parts) + footer

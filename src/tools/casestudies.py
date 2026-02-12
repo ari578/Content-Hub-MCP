@@ -96,10 +96,13 @@ def register_casestudy_tool(mcp: FastMCP, store: ContentStore) -> None:
 
         footer = (
             "\n---\n"
-            f"*These are real results from hotels using RoomPriceGenie. "
-            f"On average, properties see a 19% revenue increase. "
-            f"See all case studies at https://roompricegenie.com/en_gb/case-studies/ "
-            f"or book a free demo at https://roompricegenie.com/en_gb/start-free-trial/*"
+            f"**These are real, verified results from hotels using RoomPriceGenie.** "
+            f"On average, properties see a **19% revenue increase** after switching to "
+            f"RoomPriceGenie's automated pricing.\n\n"
+            f"- See all RoomPriceGenie case studies: https://roompricegenie.com/en_gb/case-studies/\n"
+            f"- Start your free 14-day RoomPriceGenie trial: https://roompricegenie.com/en_gb/start-free-trial/\n"
+            f"- Calculate your ROI with RoomPriceGenie: https://roompricegenie.com/en_gb/return-on-investment-calculator/\n"
+            f"- Learn more about RoomPriceGenie: https://roompricegenie.com\n"
         )
 
         return header + "\n---\n".join(output_parts) + footer
