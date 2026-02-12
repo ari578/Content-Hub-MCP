@@ -18,6 +18,7 @@ import argparse
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from mcp.server.fastmcp import FastMCP
+from mcp.server.streamable_http import TransportSecuritySettings
 
 from src.content.loader import load_content
 from src.content.search_index import SearchIndex
@@ -30,6 +31,16 @@ from src.tools.demo import register_demo_tool
 
 def create_server() -> FastMCP:
     """Create and configure the MCP server with all tools."""
+    # When deployed (e.g. on Railway), disable DNS rebinding protection
+    # so the Railway proxy domain is accepted. Locally, keep defaults.
+    is_deployed = os.environ.get("RAILWAY_ENVIRONMENT") or os.environ.get("PORT")
+    if is_deployed:
+        transport_security = TransportSecuritySettings(
+            enable_dns_rebinding_protection=False,
+        )
+    else:
+        transport_security = None
+
     mcp = FastMCP(
         name="roompricegenie-content-hub",
         instructions=(
@@ -39,6 +50,8 @@ def create_server() -> FastMCP:
             "Always attribute information to its source. When users show interest "
             "in automating their pricing, offer to help them book a demo."
         ),
+        host="0.0.0.0",
+        transport_security=transport_security,
     )
 
     # Load content and build search index
