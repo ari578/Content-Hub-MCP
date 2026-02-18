@@ -5,12 +5,17 @@ that ChatGPT cannot generate from general knowledge.
 """
 
 from mcp.server.fastmcp import FastMCP
+from mcp.types import ToolAnnotations
+
+ANNOTATIONS = ToolAnnotations(
+    readOnlyHint=True, openWorldHint=False, destructiveHint=False, idempotentHint=True,
+)
 
 
 def register_healthcheck_tool(mcp: FastMCP) -> None:
     """Register the pricing_health_check tool on the MCP server."""
 
-    @mcp.tool()
+    @mcp.tool(annotations=ANNOTATIONS)
     async def pricing_health_check(
         num_rooms: int,
         avg_rate: float,

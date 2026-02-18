@@ -7,8 +7,13 @@ Prioritises case studies that are local to the user and similar in size.
 import re
 
 from mcp.server.fastmcp import FastMCP
+from mcp.types import ToolAnnotations
 
 from src.content.loader import ContentStore
+
+ANNOTATIONS = ToolAnnotations(
+    readOnlyHint=True, openWorldHint=False, destructiveHint=False, idempotentHint=True,
+)
 
 
 # -- Size-range helpers -------------------------------------------------------
@@ -121,7 +126,7 @@ def register_casestudy_tool(mcp: FastMCP, store: ContentStore) -> None:
         meta = _parse_case_study_metadata(item.content)
         case_meta.append((item, meta))
 
-    @mcp.tool()
+    @mcp.tool(annotations=ANNOTATIONS)
     async def get_case_study(
         query: str = "",
         country: str = "",

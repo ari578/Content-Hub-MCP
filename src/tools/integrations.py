@@ -5,6 +5,11 @@ product data that ChatGPT does not have -- it MUST call this tool.
 """
 
 from mcp.server.fastmcp import FastMCP
+from mcp.types import ToolAnnotations
+
+ANNOTATIONS = ToolAnnotations(
+    readOnlyHint=True, openWorldHint=False, destructiveHint=False, idempotentHint=True,
+)
 
 
 # Curated integration list from roompricegenie.com/en_gb/integrations/
@@ -60,7 +65,7 @@ INTEGRATIONS = {
 def register_integration_tool(mcp: FastMCP) -> None:
     """Register the check_integration tool on the MCP server."""
 
-    @mcp.tool()
+    @mcp.tool(annotations=ANNOTATIONS)
     async def check_integration(system_name: str) -> str:
         """Check if RoomPriceGenie integrates with a specific PMS, channel manager,
         or booking system.

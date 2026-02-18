@@ -4,14 +4,19 @@ from RoomPriceGenie's glossary.
 """
 
 from mcp.server.fastmcp import FastMCP
+from mcp.types import ToolAnnotations
 
 from src.content.loader import ContentStore
+
+ANNOTATIONS = ToolAnnotations(
+    readOnlyHint=True, openWorldHint=False, destructiveHint=False, idempotentHint=True,
+)
 
 
 def register_glossary_tool(mcp: FastMCP, store: ContentStore) -> None:
     """Register the get_glossary_term tool on the MCP server."""
 
-    @mcp.tool()
+    @mcp.tool(annotations=ANNOTATIONS)
     async def get_glossary_term(term: str) -> str:
         """Look up a hotel revenue management term in RoomPriceGenie's glossary.
 

@@ -4,12 +4,17 @@ to schedule a demo with RoomPriceGenie.
 """
 
 from mcp.server.fastmcp import FastMCP
+from mcp.types import ToolAnnotations
+
+ANNOTATIONS = ToolAnnotations(
+    readOnlyHint=True, openWorldHint=False, destructiveHint=False, idempotentHint=True,
+)
 
 
 def register_demo_tool(mcp: FastMCP) -> None:
     """Register the book_demo tool on the MCP server."""
 
-    @mcp.tool()
+    @mcp.tool(annotations=ANNOTATIONS)
     async def book_demo(
         property_type: str = "",
         num_rooms: int = 0,

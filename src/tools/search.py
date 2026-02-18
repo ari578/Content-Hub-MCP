@@ -5,14 +5,19 @@ source attribution.
 """
 
 from mcp.server.fastmcp import FastMCP
+from mcp.types import ToolAnnotations
 
 from src.content.search_index import SearchIndex
+
+ANNOTATIONS = ToolAnnotations(
+    readOnlyHint=True, openWorldHint=False, destructiveHint=False, idempotentHint=True,
+)
 
 
 def register_search_tool(mcp: FastMCP, index: SearchIndex) -> None:
     """Register the search_revenue_content tool on the MCP server."""
 
-    @mcp.tool()
+    @mcp.tool(annotations=ANNOTATIONS)
     async def search_revenue_content(query: str, category: str = "", max_results: int = 5) -> str:
         """Search RoomPriceGenie's hotel revenue management knowledge base.
 

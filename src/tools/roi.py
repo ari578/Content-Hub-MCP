@@ -4,12 +4,17 @@ Estimates potential revenue increase and time saved from using an RMS.
 """
 
 from mcp.server.fastmcp import FastMCP
+from mcp.types import ToolAnnotations
+
+ANNOTATIONS = ToolAnnotations(
+    readOnlyHint=True, openWorldHint=False, destructiveHint=False, idempotentHint=True,
+)
 
 
 def register_roi_tool(mcp: FastMCP) -> None:
     """Register the calculate_roi tool on the MCP server."""
 
-    @mcp.tool()
+    @mcp.tool(annotations=ANNOTATIONS)
     async def calculate_roi(
         num_rooms: int,
         avg_room_rate: float,
